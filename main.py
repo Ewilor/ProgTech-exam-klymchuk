@@ -3,7 +3,7 @@ from logic import calculate_pyramidal_sum
 
 def main():
     print("Pyramidal Number Calculator (Pn = 1+3+6+...)")
-    print("Type 'exit' to quit.")
+    print("TYPE 'exit' to quit.")
     
     while True:
         user_input = input("\nEnter n: ")

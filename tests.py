@@ -17,7 +17,7 @@ class TestPyramidalCalculation(unittest.TestCase):
 
     @unittest.expectedFailure
     def test_negative_value(self):
-            calculate_pyramidal_sum(-1)
+        calculate_pyramidal_sum(-1)
 
     def test_invalid_types(self):
         """

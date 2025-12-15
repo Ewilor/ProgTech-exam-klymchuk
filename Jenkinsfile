@@ -13,18 +13,18 @@ pipeline {
             }
         }
 
+        stage('Unit Tests') {
+            steps {
+                sh "mkdir -p test-reports"
+                sh "docker run --rm -v ${WORKSPACE}/test-reports:/app/test-reports ${DOCKER_IMAGE}:${DOCKER_TAG} python tests.py"
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
                     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
-            }
-        }
-
-        stage('Unit Tests') {
-            steps {
-                sh "mkdir -p test-reports"
-                sh "docker run --rm -v ${WORKSPACE}/test-reports:/app/test-reports ${DOCKER_IMAGE}:${DOCKER_TAG} python tests.py"
             }
         }
 
