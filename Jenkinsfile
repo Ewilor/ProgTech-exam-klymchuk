@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = 'your_dockerhub_username/pyramidal-calc'
+        DOCKER_IMAGE = 'bohdank15/pyramidal-calc'
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
     
@@ -37,7 +37,7 @@ pipeline {
         
         stage('Push to DockerHub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: '4235f573-20b7-4053-9d45-c0f8f0e669ba', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: '4235f573-20b7-4053-9d45-c0f8f0e669ba', url: '')]) {
                     sh "echo $PASS | docker login -u $USER --password-stdin"
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     sh "docker push ${DOCKER_IMAGE}:latest"
