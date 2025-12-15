@@ -1,4 +1,5 @@
 import unittest
+import xmlrunner
 from logic import calculate_pyramidal_sum
 
 class TestPyramidalCalculation(unittest.TestCase):
@@ -36,4 +37,5 @@ class TestPyramidalCalculation(unittest.TestCase):
             calculate_pyramidal_sum(None)
 
 if __name__ == '__main__':
-    unittest.main()
+    runner = xmlrunner.XMLTestRunner(output='test-reports')
+    unittest.main(testRunner=runner)

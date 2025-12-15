@@ -23,7 +23,8 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python -m unittest tests.py"
+                sh "mkdir -p test-reports"
+                sh "docker run --rm -v ${WORKSPACE}/test-reports:/app/test-reports ${DOCKER_IMAGE}:${DOCKER_TAG} python tests.py"
             }
         }
 
@@ -45,6 +46,7 @@ pipeline {
 
     post {
         always {
+            junit 'test-reports/*.xml'
             sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true"
             sh "docker rmi ${DOCKER_IMAGE}:latest || true"
         }
