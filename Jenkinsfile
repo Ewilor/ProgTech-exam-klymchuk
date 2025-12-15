@@ -30,7 +30,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: '4235f573-20b7-4053-9d45-c0f8f0e669ba', url: '')]) {
+                    withCredentials([usernamePassword(credentialsId: 'Jenkins-exam', url: '')]) {
                         sh "echo $PASS | docker login -u $USER --password-stdin"
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                         
