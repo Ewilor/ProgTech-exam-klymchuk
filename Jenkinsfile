@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'Jenkins-exam', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
+                        sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                         
                         // Тегуємо як latest і пушимо теж
